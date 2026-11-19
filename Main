@@ -1,0 +1,27 @@
+from busqueda_secuencial import ejecutar_secuencial
+from busqueda_binaria import ejecutar_binaria
+from busqueda_hash import ejecutar_hash
+
+def menu():
+while True:
+print("\n--- MENÚ DE MÉTODOS DE BÚSQUEDA ---")
+print("1. Búsqueda Secuencial (Inventario)")
+print("2. Búsqueda Binaria (Matrículas)")
+print("3. Búsqueda Hash (Directorio de Usuarios)")
+print("4. Salir")
+opcion = input("Seleccione una opción: ")
+
+if opcion == '1':
+ejecutar_secuencial()
+elif opcion == '2':
+ejecutar_binaria()
+elif opcion == '3':
+ejecutar_hash()
+elif opcion == '4':
+print("Saliendo del programa...")
+break
+else:
+print("Opción no válida. Intente de nuevo.")
+
+if __name__ == "__main__":
+menu()
