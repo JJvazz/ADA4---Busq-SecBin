@@ -1,0 +1,39 @@
+def busqueda_binaria(lista, objetivo):
+izquierda = 0
+derecha = len(lista) - 1
+while izquierda <= derecha:
+medio = (izquierda + derecha) // 2
+if lista[medio] == objetivo:
+return medio
+elif lista[medio] < objetivo:
+izquierda = medio + 1
+else:
+derecha = medio - 1
+return -1
+
+def ejecutar_binaria():
+matriculas = [240101, 240115, 240128, 240142, 240159, 240175, 240190, 240205]
+print("Matrículas registradas (ordenadas):", matriculas)
+opcion = input("¿Desea ingresar sus propias matrículas? (s/n): ").lower()
+if opcion == 's':
+try:
+n = int(input("Cantidad de matrículas: "))
+if n <= 0:
+raise ValueError
+nuevo = []
+for i in range(n):
+nuevo.append(int(input(f"Matrícula {i + 1}: ")))
+nuevo.sort()
+matriculas = nuevo
+print("Lista ordenada automáticamente:", matriculas)
+except ValueError:
+print("Entrada inválida. Se usarán las matrículas predeterminadas.")
+try:
+objetivo = int(input("Ingrese la matrícula a buscar: "))
+posicion = busqueda_binaria(matriculas, objetivo)
+if posicion != -1:
+print(f"Matrícula {objetivo} encontrada en el índice {posicion}.")
+else:
+print(f"Matrícula {objetivo} no encontrada en el registro.")
+except ValueError:
+print("Error: ingrese un número entero válido.")
