@@ -1,0 +1,56 @@
+class TablaHash:
+def __init__(self, tamano=10):
+self.tamano = tamano
+self.tabla = [[] for _ in range(tamano)]
+
+def funcion_hash(self, clave):
+return clave % self.tamano
+
+def insertar(self, clave, valor):
+indice = self.funcion_hash(clave)
+for par in self.tabla[indice]:
+if par[0] == clave:
+par[1] = valor
+return
+self.tabla[indice].append([clave, valor])
+
+def buscar(self, clave):
+indice = self.funcion_hash(clave)
+for par in self.tabla[indice]:
+if par[0] == clave:
+return indice, par[1]
+return -1, None
+
+def ejecutar_hash():
+directorio = TablaHash(10)
+datos_iniciales = [
+(101, "Ana López"),
+(205, "Carlos Pérez"),
+(312, "María Gómez"),
+(418, "Luis Torres"),
+(521, "Sofía Ruiz")
+]
+for k, v in datos_iniciales:
+directorio.insertar(k, v)
+print("Usuarios cargados (ID: Nombre):", datos_iniciales)
+opcion = input("¿Desea agregar nuevos usuarios? (s/n): ").lower()
+if opcion == 's':
+try:
+n = int(input("Cantidad de usuarios a agregar: "))
+if n <= 0:
+raise ValueError
+for i in range(n):
+clave = int(input(f"ID del usuario {i + 1}: "))
+nombre = input(f"Nombre del usuario {i + 1}: ")
+directorio.insertar(clave, nombre)
+except ValueError:
+print("Entrada inválida al agregar usuarios.")
+try:
+objetivo = int(input("Ingrese el ID del usuario a buscar: "))
+indice, nombre = directorio.buscar(objetivo)
+if nombre is not None:
+print(f"Usuario encontrado en el bucket {indice}: {nombre} (ID: {objetivo}).")
+else:
+print(f"No existe ningún usuario con el ID {objetivo}.")
+except ValueError:
+print("Error: ingrese un ID numérico válido.")
