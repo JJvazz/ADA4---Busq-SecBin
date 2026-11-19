@@ -1,0 +1,30 @@
+def busqueda_secuencial(lista, objetivo):
+for i in range(len(lista)):
+if lista[i] == objetivo:
+return i
+return -1
+
+def ejecutar_secuencial():
+inventario = [104, 215, 89, 340, 120, 512, 77, 405]
+print("Inventario actual (códigos):", inventario)
+opcion = input("¿Desea ingresar sus propios códigos? (s/n): ").lower()
+if opcion == 's':
+try:
+n = int(input("Cantidad de productos: "))
+if n <= 0:
+raise ValueError
+nuevo = []
+for i in range(n):
+nuevo.append(int(input(f"Código del producto {i + 1}: ")))
+inventario = nuevo
+except ValueError:
+print("Entrada inválida. Se usará el inventario predeterminado.")
+try:
+objetivo = int(input("Ingrese el código del producto a buscar: "))
+posicion = busqueda_secuencial(inventario, objetivo)
+if posicion != -1:
+print(f"Producto {objetivo} encontrado en la posición {posicion}.")
+else:
+print(f"Producto {objetivo} no encontrado en el inventario.")
+except ValueError:
+print("Error: ingrese un número entero válido.")
